@@ -30,27 +30,6 @@ const counterAnim = (qSelector, start = 0, end, duration = 1000) => {
     window.requestAnimationFrame(step);
 };
 
-const typeGreetings = () => {
-    typeStrings('.greetings__title', ['Crack into ^1000 JavaScript'])
-    typeStrings('.greetings__subtitle', ['CS Presentation ^300--author="Andrew Herchykov"'], { startDelay: 2000 })
-    typeStrings('.greetings__button', ['Get', 'Started', 'Get Started ^500', 'Press button or scroll down to start'], { startDelay: 3000, showCursor: true })
-}
-
-const showNumber1 = () => {
-    counterAnim("#number_1", 0, 28, 1000);
-    typeStrings('.number-1 .section__description', ['^1000years on the market 📊'])
-}
-
-const showNumber2 = () => {
-    counterAnim("#number_2", 0, 17.4, 1500);
-    typeStrings('.number-2 .section__description', ['^1000million developers 👨‍💻'])
-}
-
-const showNumber3 = () => {
-    counterAnim("#number_3", 56800, 57500, 2000);
-    typeStrings('.number-3 .section__description', ['^1000The average salary for Javascript Developer jobs in the UK 💸'])
-}
-
 const sectionsAnimation = {
     firstSection: false,
     eighthSection: false
@@ -65,12 +44,26 @@ const initializeFullPageSlider = () => {
         slidesNavigation: true,
         controlArrows: true,
         anchors: ['firstSection', 'secondSection', 'thirdSection', 'fourthSection', 'fifthSection', 'sixthSection', 'seventhSection', 'eighthSection', 'ninthSection'],
-        onLeave: function(index, nextIndex, direction) {
-            if (nextIndex.anchor === 'firstSection' && !sectionsAnimation.firstSection) {
-                typeGreetings
-                sectionsAnimation.firstSection = true;
-            }
+        afterRender: () => {
+            typeStrings('.greetings__title', ['Crack into ^1000 JavaScript'])
+            typeStrings('.greetings__subtitle', ['CS Presentation ^300--author="Andrew Herchykov"'], { startDelay: 2000 })
+            typeStrings('.greetings__button', ['Get', 'Started', 'Get Started ^500', 'Press button or scroll down to start'], { startDelay: 3000, showCursor: true })
+            sectionsAnimation.firstSection = true;
+        }
+        onLeave: (index, nextIndex, direction) => {
             if (nextIndex.anchor === 'eighthSection' && !sectionsAnimation.eighthSection) {
+                const showNumber1 = () => {
+                    counterAnim("#number_1", 0, 28, 1000);
+                    typeStrings('.number-1 .section__description', ['^1000years on the market 📊'])
+                }
+                const showNumber2 = () => {
+                    counterAnim("#number_2", 0, 17.4, 1500);
+                    typeStrings('.number-2 .section__description', ['^1000million developers 👨‍💻'])
+                }
+                const showNumber3 = () => {
+                    counterAnim("#number_3", 56800, 57500, 2000);
+                    typeStrings('.number-3 .section__description', ['^1000The average salary for Javascript Developer jobs in the UK 💸'])
+                }
                 showNumber1();
                 showNumber2();
                 showNumber3();
