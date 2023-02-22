@@ -49,7 +49,7 @@ const initializeFullPageSlider = () => {
             typeStrings('.greetings__subtitle', ['CS Presentation ^300--author="Andrew Herchykov"'], { startDelay: 2000 })
             typeStrings('.greetings__button', ['Get', 'Started', 'Get Started ^500', 'Press button or scroll down to start'], { startDelay: 3000, showCursor: true })
             sectionsAnimation.firstSection = true;
-        }
+        },
         onLeave: (index, nextIndex, direction) => {
             if (nextIndex.anchor === 'eighthSection' && !sectionsAnimation.eighthSection) {
                 const showNumber1 = () => {
